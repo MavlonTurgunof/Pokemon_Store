@@ -1,36 +1,45 @@
 <div
   class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col items-center pb-6 relative"
 >
-  <div class="w-full h-32 bg-yellow-400 rounded-b-[50%] relative flex justify-center items-end">
-    <span class="absolute top-3 right-3 bg-white text-xs font-medium px-2 py-1 rounded-full shadow">
+  <div
+    class="h-78 w-full bottom-32 bg-yellow-400 rounded-[50%] relative flex justify-center items-end"
+  >
+    <span class="absolute top-40 right-3 bg-white text-xs px-5 py-2 rounded-full shadow font-bold">
       ID: {{ pokemon().id }}
     </span>
 
-    <img [src]="pokemon().image" [alt]="pokemon().name" class="w-28 h-28 object-contain -mb-10" />
+    <img
+      [ngSrc]="pokemon().image"
+      [alt]="pokemon().name"
+      width="112"
+      height="112"
+      class="w-48 h-48 object-contain -mb-20"
+      priority
+    />
   </div>
 
-  <h3 class="mt-12 font-bold uppercase text-sm tracking-wide">
+  <h3 class="font-extrabold uppercase text-lg mb-8">
     {{ pokemon().name }}
   </h3>
 
   <div class="flex justify-around w-full mt-4 px-4 text-center">
     <div>
-      <p class="font-bold">{{ pokemon().height }}</p>
+      <p class="font-extrabold">{{ pokemon().height }}</p>
       <p class="text-xs text-gray-500">Height</p>
     </div>
     <div>
-      <p class="font-bold">{{ pokemon().experience }}</p>
+      <p class="font-extrabold">{{ pokemon().experience }}</p>
       <p class="text-xs text-gray-500">Experience</p>
     </div>
     <div>
-      <p class="font-bold">{{ pokemon().order }}</p>
+      <p class="font-extrabold">{{ pokemon().order }}</p>
       <p class="text-xs text-gray-500">Order</p>
     </div>
   </div>
 
   <button
     (click)="onShowMore()"
-    class="mt-5 bg-green-500 hover:bg-green-600 text-white text-sm font-medium px-6 py-2 rounded-full transition-colors"
+    class="mt-5 bg-green-500 hover:bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
   >
     Show more
   </button>

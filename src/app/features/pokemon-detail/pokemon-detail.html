@@ -1,1 +1,46 @@
-<p>pokemon-detail works!</p>
+<div class="min-h-screen bg-white">
+  <div class="bg-purple-500 text-white px-6 py-4 flex items-center gap-4">
+    <button (click)="goBack()" class="text-white hover:opacity-80">← Back</button>
+    <h1 class="font-medium">Pokemon world</h1>
+  </div>
+  <app-container>
+    @if (loading()) {
+      <p class="text-center text-gray-500 mt-10">Loading...</p>
+    }
+
+    @if (error()) {
+      <p class="text-center text-red-500 mt-10">{{ error() }}</p>
+    }
+
+    @if (pokemon(); as p) {
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-8 p-8">
+        <img
+          [ngSrc]="
+            p.sprites.other['official-artwork'].front_default ?? p.sprites.front_default ?? ''
+          "
+          [alt]="p.name"
+          width="260"
+          height="260"
+          priority
+          disableOptimizedSrcset
+          class="object-contain"
+        />
+        <div class="space-y-2">
+          <p><span class="font-medium">Id:</span> {{ p.id }}</p>
+          <p><span class="font-medium">Title:</span> {{ p.name }}</p>
+          <p><span class="font-medium">Height:</span> {{ p.height }}</p>
+          <p><span class="font-medium">Weight:</span> {{ p.weight }}</p>
+
+          <p class="font-medium mt-4">Some Stats:</p>
+          <div class="flex flex-wrap gap-2">
+            @for (stat of p.stats; track stat.stat.name) {
+              <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-full">
+                {{ stat.stat.name }} {{ stat.base_stat }}
+              </span>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </app-container>
+</div>

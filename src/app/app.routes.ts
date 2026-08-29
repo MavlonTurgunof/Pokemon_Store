@@ -1,15 +1,14 @@
 import { Routes } from '@angular/router';
-import { PokemonList } from './features/pokemon-list/pokemon-list';
-import { PokemonDetail } from './features/pokemon-detail/pokemon-detail';
 
 export const routes: Routes = [
   {
-    path: 'pokemon',
-    component: PokemonList,
+    path: '',
+    loadComponent: () => import('./features/pokemon-list/pokemon-list').then((m) => m.PokemonList),
   },
   {
     path: 'pokemon/:id',
-    component: PokemonDetail,
+    loadComponent: () =>
+      import('./features/pokemon-detail/pokemon-detail').then((m) => m.PokemonDetail),
   },
   {
     path: '',

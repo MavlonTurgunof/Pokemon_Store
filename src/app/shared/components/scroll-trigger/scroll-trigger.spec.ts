@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Pagination } from './pagination';
+import { ScrollTrigger } from './scroll-trigger';
 
-describe('Pagination', () => {
-  let component: Pagination;
-  let fixture: ComponentFixture<Pagination>;
+describe('ScrollTrigger', () => {
+  let component: ScrollTrigger;
+  let fixture: ComponentFixture<ScrollTrigger>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Pagination]
+      imports: [ScrollTrigger]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Pagination);
+    fixture = TestBed.createComponent(ScrollTrigger);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

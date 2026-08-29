@@ -1,9 +1,10 @@
 import { Component, input, output } from '@angular/core';
 import { PokemonCardItem } from '../../../core/models/pokemon';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-pokemon-card',
-  imports: [],
+  imports: [NgOptimizedImage],
   standalone: true,
   templateUrl: './pokemon-card.html',
   styleUrl: './pokemon-card.css',

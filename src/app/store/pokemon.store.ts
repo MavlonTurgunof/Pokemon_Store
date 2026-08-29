@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { forkJoin, switchMap } from 'rxjs';
 import { Pokemon, PokemonCardItem } from '../core/models/pokemon';
 import { toCardItem } from '../core/models/pokemon.mapper';
@@ -35,7 +35,13 @@ export class PokemonStore {
       )
       .subscribe({
         next: (pokemons: Pokemon[]) => {
-          this.pokemonList.set(pokemons.map(toCardItem));
+          const newItems = pokemons.map(toCardItem);
+          if (page === 1) {
+            this.pokemonList.set(newItems);
+          } else {
+            this.pokemonList.update((current) => [...current, ...newItems]);
+          }
+
           this.currentPage.set(page);
           this.loading.set(false);
           console.log(pokemons);
@@ -46,7 +52,7 @@ export class PokemonStore {
         },
       });
   }
-
+  hasMore = computed(() => this.pokemonList().length < this.totalPokemon());
   loadPokemonById(id: number) {
     this.loading.set(true);
     this.error.set(null);
