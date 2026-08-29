@@ -1,1 +1,24 @@
-<p>pokemon-list works!</p>
+<div class="p-6">
+  @if (loading()) {
+    <p class="text-center text-gray-500">Loading...</p>
+  }
+
+  @if (error()) {
+    <p class="text-center text-red-500">{{ error() }}</p>
+  }
+
+  @if (!loading() && !error()) {
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (pokemon of pokemonList(); track pokemon.id) {
+        <app-pokemon-card [pokemon]="pokemon" (showMore)="onCardClick($event)" />
+      }
+    </div>
+
+    <app-pagination
+      [currentPage]="currentPage()"
+      [totalItems]="totalPokemon()"
+      [pageSize]="9"
+      (pageChange)="onPageChange($event)"
+    />
+  }
+</div>

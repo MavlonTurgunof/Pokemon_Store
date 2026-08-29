@@ -6,7 +6,7 @@ src/app/
 │ └── pokemon.service.ts  
 │
 ├── store/
-│ └── pokem/on.store.ts  
+│ └── pokemon.store.ts  
 │
 ├── shared/
 │ ├── components/
